@@ -1,4 +1,4 @@
-import css from './components/Home/Home.module.css';
+import css from './page.module.css';
 
 export default function HomePage() {
   return (

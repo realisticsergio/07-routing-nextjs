@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Note } from '../types/note';
+import type { Note, NoteFormValues } from '../types/note';
 
 interface NOTEHUBResponse {
   notes: Note[];
@@ -9,7 +9,7 @@ interface NOTEHUBResponse {
 const instance = axios.create({
   baseURL: 'https://notehub-public.goit.study/api',
   headers: {
-    Authorization: `Bearer ${import.meta.env.VITE_NOTEHUB_TOKEN}`,
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
     accept: 'application/json',
   },
 });
@@ -21,12 +21,17 @@ export const fetchNotes = async (query: string, page?: number): Promise<NOTEHUBR
   return response.data;
 };
 
-export const createNote = async (newPost: Omit<Note, 'id'>): Promise<Note> => {
+export const createNote = async (newPost: NoteFormValues): Promise<Note> => {
   const response = await instance.post<Note>('/notes', newPost);
   return response.data;
 };
 
 export const deleteNote = async (id: string): Promise<Note> => {
   const response = await instance.delete<Note>(`/notes/${id}`);
+  return response.data;
+};
+
+export const fetchNoteById = async (id: string): Promise<Note> => {
+  const response = await instance.get<Note>(`/notes/${id}`);
   return response.data;
 };

@@ -10,3 +10,8 @@ export interface Note {
 }
 
 export type NoteFormValues = Omit<Note, 'id' | 'createdAt' | 'updatedAt'>;
+
+export interface NotesResponse {
+  notes: Note[];
+  totalPages: number;
+}

@@ -1,9 +1,11 @@
+'use client';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import css from './NoteForm.module.css';
-import type { NoteFormValues } from '../../types/note.ts';
-import { createNote } from '../../services/noteService.ts';
+import type { NoteFormValues } from '@/types/note';
+import { createNote } from '@/lib/api';
 
 interface NoteFormProps {
   onClose: () => void;
@@ -29,9 +31,6 @@ export default function NoteForm({ onClose }: NoteFormProps) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['notes'] });
       onClose();
-    },
-    onError: (error) => {
-      console.error('Error creating note:', error);
     },
   });
 
