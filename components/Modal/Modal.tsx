@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import type { MouseEvent, ReactNode } from 'react';
 import css from './Modal.module.css';
+import { createPortal } from 'react-dom';
 
 interface ModalProps {
   children: ReactNode;
@@ -28,9 +29,10 @@ export default function Modal({ children, onClose }: ModalProps) {
     if (e.target === e.currentTarget) onClose();
   };
 
-  return (
+  return createPortal(
     <div className={css.backdrop} onClick={handleBackdropClick}>
       <div className={css.modal}>{children}</div>
-    </div>
+    </div>,
+    document.body
   );
 }

@@ -13,32 +13,32 @@ import Modal from '@/components/Modal/Modal';
 import css from './Notes.module.css';
 
 export default function NotesClient() {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
 
   const debouncedSetSearch = useDebouncedCallback((value: string) => {
     setSearch(value);
-    setPage(0);
+    setPage(1);
   }, 300);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data } = useQuery({
     queryKey: ['notes', search, page],
-    queryFn: () => fetchNotes(search, page + 1),
+    queryFn: () => fetchNotes(search, page),
     placeholderData: keepPreviousData,
   });
 
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
-        <SearchBox value="search" onChange={(value) => debouncedSetSearch(value)} />
+        <SearchBox value={search} onChange={(value) => debouncedSetSearch(value)} />
 
         {data && data.totalPages > 1 && (
           <Pagination
             totalPages={data.totalPages}
-            currentPage={page}
-            onPageChange={(selectedPage) => setPage(selectedPage)}
+            currentPage={page - 1}
+            onPageChange={(selectedPage) => setPage(selectedPage + 1)}
           />
         )}
 
