@@ -17,3 +17,23 @@
 .contentSlot {
   min-width: 0;
 }
+
+.menuList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuItem {
+  margin-bottom: 10px;
+}
+
+.menuLink {
+  text-decoration: none;
+  color: #0070f3;
+  font-weight: 500;
+}
+
+.menuLink:hover {
+  text-decoration: underline;
+}

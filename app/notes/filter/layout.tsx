@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import css from './FilterLayout.module.css';
+import css from './layout.module.css';
 
 const TAGS = ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
 
