@@ -1,6 +1,6 @@
 import { fetchNoteById } from '@/lib/api';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-import NoteModalIntercept from '../[id]/NoteModalIntercept';
+import NoteModalIntercept from './NoteModalIntercept';
 
 interface Props {
   params: Promise<{ id: string }>;
